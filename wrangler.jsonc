@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "account_id": "07c56e0dc4b3b1597495aa78fe7ebbf8",
+  "account_id": "3d84d8bb9f9aa96a961410b8d4163e8a",
   "analytics_engine_datasets": [
     {
       "binding": "ANALYTICS"
@@ -10,12 +10,12 @@
   "kv_namespaces": [
     {
       "binding": "CACHE_KV",
-      "id": "4d5895d8716247f486493b93edbc5fe9",
+      "id": "44b76a93919c42ee9e4570fc39e9fb44",
       "preview_id": "e9e499fe006e4879a0668e792fe2dd15"
     },
     {
       "binding": "RATE_LIMIT_KV",
-      "id": "07147ca64a4c48fe952f62afe469bb44",
+      "id": "de4ffc11838846648d5f60e675ead951",
       "preview_id": "bbed039364e5488e8ed58701c3ee5da5"
     }
   ],
