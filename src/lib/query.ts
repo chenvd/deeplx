@@ -10,7 +10,7 @@ import {
 } from "./config";
 import { API_URL, REQUEST_ALTERNATIVES } from "./const";
 import { createErrorResponse } from "./errorHandler";
-import { generateBrowserFingerprint, selectProxy } from "./proxyManager";
+import { selectProxy } from "./proxyManager";
 import { checkCombinedRateLimit } from "./rateLimit";
 import { isRetryableError, RetryOptions, retryWithBackoff } from "./retryLogic";
 import {
@@ -316,8 +316,6 @@ async function query(
         }
       }
 
-      const fingerprint = generateBrowserFingerprint();
-
       const makeRequest = async () => {
         const controller = new AbortController();
         const timeoutId = setTimeout(() => controller.abort(), REQUEST_TIMEOUT);
@@ -329,17 +327,10 @@ async function query(
             headers: {
               "Content-Type": "application/json",
               Accept: "*/*",
-              "Accept-Language": "en-US,en;q=0.9",
-              "Accept-Encoding": "gzip, deflate, br, zstd",
               Origin: "https://www.deepl.com",
-              Connection: "keep-alive",
               Referer: "https://www.deepl.com/",
-              "Sec-Fetch-Dest": "empty",
-              "Sec-Fetch-Mode": "cors",
-              "Sec-Fetch-Site": "same-site",
               "User-Agent":
-                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36 Edg/141.0.0.0",
-              // ...fingerprint,
+                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/141.0.0.0 Safari/537.36",
               ...config?.customHeader,
             },
             method: "POST",
