@@ -201,6 +201,16 @@ describe("Query Module", () => {
         "https://custom-proxy.com/api",
         expect.any(Object)
       );
+
+      const requestOptions = mockFetch.mock.calls[0][1];
+      expect(requestOptions?.headers).toMatchObject({
+        Accept: "*/*",
+        "Content-Type": "application/json",
+        Origin: "https://www.deepl.com",
+        Referer: "https://www.deepl.com/",
+      });
+      expect(requestOptions?.headers).not.toHaveProperty("Sec-Fetch-Site");
+      expect(requestOptions?.headers).not.toHaveProperty("Accept-Encoding");
     });
   });
 });
